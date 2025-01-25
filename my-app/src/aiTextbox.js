@@ -10,6 +10,18 @@ function AiForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(`You entered: ${response}`);
+    var budget = 1000;
+    var salary = 5000;
+    var spending = 3000;
+    var goals = ["to save more money", "to invest more"];
+
+    async function callAsync() {
+        var aiResult = await groqGen(budget, salary, spending, goals, response);
+        var avatar_response = aiResult.response;
+        var budget_breakdown = aiResult.budget_breakdown;
+        alert(`AI budget_breakdown: ${budget_breakdown.food}`);
+    }
+    callAsync();
   }
 
   return (
