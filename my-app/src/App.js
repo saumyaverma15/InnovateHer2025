@@ -5,6 +5,7 @@ import { authConfig } from './authConfig';
 import SignIn from './login/Signin';
 import CreateAccount from './login/CreateAccount';
 import BudgetPlan from './budgetForm';
+import EnterPersonalInfo from './EnterInfo'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
         <Route path="/CreateAccount" element={<CreateAccount/>}/>
         <Route path="/BudgetForm" element={<BudgetPlan/>}></Route>
+        <Route path="/EnterPersonalInfo" element={<EnterPersonalInfo />} /> {/* New route */}
 
       </Routes>
     </Router>

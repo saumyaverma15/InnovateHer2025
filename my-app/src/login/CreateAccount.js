@@ -16,7 +16,9 @@ import { styled } from '@mui/material/styles';
 import ForgotPassword from './components/ForgotPassword';
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { Avatar } from '@mui/material';
 import { createAuth0Client } from '@auth0/auth0-spa-js';
+import avatar from './media/avatar1.png'
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -194,6 +196,13 @@ export default function SignIn(props) {
               gap: 2,
             }}
           >
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Avatar
+                alt="Sprite"
+                src={avatar}
+                sx={{ width: 130, height: 130, boxShadow: 3 }}
+              />
+            </Box>
             <FormControl>
               <FormLabel htmlFor="email" sx={{ color: '#c2185b' }}>
                 Email

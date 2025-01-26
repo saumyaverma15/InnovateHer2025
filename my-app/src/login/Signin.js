@@ -19,6 +19,9 @@ import ForgotPassword from './components/ForgotPassword';
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import { createAuth0Client } from '@auth0/auth0-spa-js';
+import { Avatar } from '@mui/material';
+import avatar from './media/avatar4.png'
+import title1 from './media/title.jpeg'
 // import React, { useState } from "react";
 
 
@@ -112,7 +115,7 @@ export default function SignIn(props) {
     // Check if verification was successful
     if (verificationResponse.success) {
       // Redirect to the dashboard or another page upon successful login
-      window.location.href = '#/BudgetForm';
+      window.location.href = '#/EnterPersonalInfo';
       //navigate("/CreateAccount");
 
     } else {
@@ -206,6 +209,13 @@ export default function SignIn(props) {
               gap: 2,
             }}
           >
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Avatar
+                alt="Sprite"
+                src={avatar}
+                sx={{ width: 130, height: 130, boxShadow: 3 }}
+              />
+            </Box>
             <FormControl>
               <FormLabel htmlFor="email" sx={{ color: '#c2185b' }}>
                 Email
