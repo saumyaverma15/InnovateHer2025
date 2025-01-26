@@ -1,7 +1,7 @@
 import { Grid2, Box, Button } from "@mui/material";
 import Sprite from "./avatar";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Conversation() {
     const location = useLocation();
@@ -18,6 +18,8 @@ export default function Conversation() {
         else {
             setText("Let me take you to your dashboard!")
         }
+        if (displayText === "Let me take you to your dashboard!")
+            window.location.href = '#/ExpensesBudget';
       };
 
     return (
