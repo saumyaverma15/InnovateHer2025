@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -18,6 +19,10 @@ import ForgotPassword from './components/ForgotPassword';
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
 import { createAuth0Client } from '@auth0/auth0-spa-js';
+import { Avatar } from '@mui/material';
+import avatar from './media/avatar4.png'
+import title1 from './media/title.jpeg'
+// import React, { useState } from "react";
 
 
 
@@ -91,6 +96,7 @@ export default function SignIn(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent form submission
+    
   
     // Validate input fields before proceeding
     if (!validateInputs()) {
@@ -109,7 +115,9 @@ export default function SignIn(props) {
     // Check if verification was successful
     if (verificationResponse.success) {
       // Redirect to the dashboard or another page upon successful login
-      window.location.href = '/dashboard';
+      window.location.href = '#/EnterPersonalInfo';
+      //navigate("/CreateAccount");
+
     } else {
       // Show error message if login fails
       setEmailError(true);
@@ -130,17 +138,18 @@ export default function SignIn(props) {
       });
   
       const result = await response.json();
-  
-      if (response.ok && result.success) {
-        return { success: true };
+      if (response.ok) {
+        return { success: true, message: result.message };
       } else {
-        return { success: false, message: result.error || 'Authentication failed' };
+        return { success: false, message: result.error || "Authentication failed" };
       }
     } catch (error) {
-      //console.error('Error verifying user:', error);
-      return { success: false, message: error.message };
+      console.error("Error connecting to server:", error);
+      return { success: false, message: "Failed to connect to the server" };
     }
   };
+  
+  
   
 
   const validateInputs = () => {
@@ -200,6 +209,13 @@ export default function SignIn(props) {
               gap: 2,
             }}
           >
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Avatar
+                alt="Sprite"
+                src={avatar}
+                sx={{ width: 130, height: 130, boxShadow: 3 }}
+              />
+            </Box>
             <FormControl>
               <FormLabel htmlFor="email" sx={{ color: '#c2185b' }}>
                 Email

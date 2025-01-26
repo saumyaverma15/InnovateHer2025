@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import {Grid2, Button, TextField, FormGroup, FormControlLabel, Checkbox, Box} from '@mui/material';
 import groqGen from './groqChat.js'
+import { Link, useNavigate } from "react-router-dom"
+
 
 const goal_list = [
   "To save for the short term",

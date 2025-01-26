@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Box from '@mui/material/Box';
+import { Link, useNavigate } from "react-router-dom"
+
 
 
 function Title() {
@@ -146,9 +148,23 @@ function NextButton() {
 
             }}
       >
-        <button variant="Next" size="large">Next</button>
+        <button variant="Next" size="large">
+            <Link to="/BudgetForm">Submit</Link>
+        </button>
         </div>
     )
 }
 export {NextButton}
 
+function EnterPersonalInfo() {
+    return (
+        <div>
+            <Title />
+            <PersonalText />
+            <GoalButtons />
+            <NextButton />
+        </div>
+    );
+}
+
+export default EnterPersonalInfo;
