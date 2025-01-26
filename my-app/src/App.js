@@ -6,6 +6,7 @@ import SignIn from './login/Signin';
 import CreateAccount from './login/CreateAccount';
 import BudgetPlan from './budgetForm';
 import EnterPersonalInfo from './EnterInfo'
+import Conversation from './avatarConvo';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
         <Route path="/CreateAccount" element={<CreateAccount/>}/>
         <Route path="/BudgetForm" element={<BudgetPlan/>}></Route>
+        <Route path="/FinanceBuddy" element={<Conversation />} />
         <Route path="/EnterPersonalInfo" element={<EnterPersonalInfo />} /> {/* New route */}
 
       </Routes>

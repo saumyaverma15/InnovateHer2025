@@ -44,7 +44,6 @@ function BudgetForm() {
         var aiResult = await groqGen(budget, salary, spending, goals, response);
         var avatar_response = aiResult.response;
         var budget_breakdown = aiResult.budget_breakdown;
-        alert(`ai result: ${avatar_response}`);
         navigate('/FinanceBuddy', {
           state: { avatar_response, budget_breakdown, goals},
         });
