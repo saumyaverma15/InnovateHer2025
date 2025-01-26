@@ -8,8 +8,12 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.1",
+<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+=======
+    "auth0": "^4.17.0",
+>>>>>>> avatar-screens
     "cra-template": "1.2.0",
     "groq-sdk": "^0.12.0",
     "mongodb": "^6.12.0",
