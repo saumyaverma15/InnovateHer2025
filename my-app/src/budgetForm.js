@@ -41,7 +41,7 @@ function BudgetForm() {
         var aiResult = await groqGen(budget, salary, spending, goals, response);
         var avatar_response = aiResult.response;
         var budget_breakdown = aiResult.budget_breakdown;
-        alert(`AI budget_breakdown: ${avatar_response}`);
+        alert(`AI response: ${avatar_response}`);
     }
     callAsync();
   }
