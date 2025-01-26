@@ -8,6 +8,7 @@ import BudgetPlan from './budgetForm';
 import EnterPersonalInfo from './EnterInfo'
 import Conversation from './avatarConvo';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import ExpensesBudget from './mainpage';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path="/BudgetForm" element={<BudgetPlan/>}></Route>
         <Route path="/FinanceBuddy" element={<Conversation />} />
         <Route path="/EnterPersonalInfo" element={<EnterPersonalInfo />} /> {/* New route */}
-
+        <Route path="/ExpensesBudget" element={<ExpensesBudget />} /> {/* New route */}
       </Routes>
     </Router>
 
