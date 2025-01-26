@@ -9,7 +9,8 @@ const goal_list = [
   "To save for the long term",
   "To invest more",
   "To track finances",
-  "To pay off debt"
+  "To pay off debt",
+  "To assess salary statistics"
 ]
 
 function BudgetForm() {
