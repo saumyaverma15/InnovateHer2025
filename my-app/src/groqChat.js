@@ -7,7 +7,7 @@ export default async function groqGen(budget, salary, spending, goals, user_inpu
         "messages": [
             {
                 "role": "system",
-                "content": "Return a JSON object with 2 parameters:\n- response: a string of up to 5 sentences, talking to the user in a friendly tone. Respond to their queries and detail a brief financial budgeting plan -- whether they should continue their current plan or if they should change anything based on their current goals.\n- budget_breakdown: a dictionary detailing an ideal budgeting plan based on category with the category as the key and the budget per month for that category as the value. The values should total up to less than or equal to the given monthly budget. The categories are as follows: food, travel, necessities, splurging."
+                "content": "Return a JSON object with 2 parameters:\n- response: an array of up to 5 elements, each element should be a string of 1 sentence, talking to the user in a friendly tone. Respond to their queries and detail a brief financial budgeting plan -- whether they should continue their current plan or if they should change anything based on their current goals.\n- budget_breakdown: a dictionary detailing an ideal budgeting plan based on category with the category as the key and the budget per month for that category as the value. The values should total up to less than or equal to the given monthly budget. The categories are as follows: food, travel, necessities, splurging."
             },
             {
                 "role": "user",

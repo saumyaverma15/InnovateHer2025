@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {Grid2, Button, TextField, FormGroup, FormControlLabel, Checkbox, Box} from '@mui/material';
 import groqGen from './groqChat.js'
+import { useNavigate } from 'react-router-dom';
 
 const goal_list = [
   "To save for the short term",
@@ -11,6 +12,8 @@ const goal_list = [
 ]
 
 function BudgetForm() {
+  const navigate = useNavigate();
+
   const [response, setResponse] = useState("");
   const [budget, setBudget] = useState(0);
   const [salary, setSalary] = useState(0);
@@ -35,13 +38,15 @@ function BudgetForm() {
         goals.push(goal_list[i])
       }
     }
-    alert(`You entered: ${response}; goals = ${goals}`);
 
     async function callAsync() {
         var aiResult = await groqGen(budget, salary, spending, goals, response);
         var avatar_response = aiResult.response;
         var budget_breakdown = aiResult.budget_breakdown;
-        alert(`AI response: ${avatar_response}`);
+        alert(`ai result: ${avatar_response}`);
+        navigate('/FinanceBuddy', {
+          state: { avatar_response, budget_breakdown, goals},
+        });
     }
     callAsync();
   }
