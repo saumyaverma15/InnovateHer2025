@@ -95,28 +95,28 @@ export default function SignIn(props) {
     }
   
     const data = new FormData(event.currentTarget);
-    const username = data.get('email'); // Assuming the email is used as the username
-    const password = data.get('password');
+    const username = data.get("email"); // Assuming the email is used as the username
+    const password = data.get("password");
   
-    // Call the verifyUser endpoint to check credentials
-    const verificationResponse = await handleVerifyUser(username, password);
+    // Call the addUser endpoint to create a new user
+    const addUserResponse = await handleAddUser(username, password);
   
-    // Check if verification was successful
-    if (verificationResponse.success) {
-      // Redirect to the dashboard or another page upon successful login
-      window.location.href = '/dashboard';
+    // Check if the user was added successfully
+    if (addUserResponse.success) {
+      // Redirect to the login page or another page upon successful registration
+      window.location.href = "/signin";
     } else {
-      // Show error message if login fails
+      // Show error message if registration fails
       setEmailError(true);
-      setEmailErrorMessage('Invalid username or password');
+      setEmailErrorMessage(addUserResponse.message || "Failed to add user");
       setPasswordError(true);
-      setPasswordErrorMessage('Invalid username or password');
+      setPasswordErrorMessage(addUserResponse.message || "Failed to add user");
     }
   };
   
-  const handleVerifyUser = async (username, password) => {
+  const handleAddUser = async (username, password) => {
     try {
-      const response = await fetch("http://localhost:3001/verifyUser", {
+      const response = await fetch("http://localhost:3001/addUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,45 +126,44 @@ export default function SignIn(props) {
   
       const result = await response.json();
   
-      if (response.ok && result.success) {
-        return { success: true };
+      if (response.ok) {
+        return { success: true, message: result.message };
       } else {
-        return { success: false, message: result.error || 'Authentication failed' };
+        return { success: false, message: result.error || "Failed to add user" };
       }
     } catch (error) {
-      console.error('Error verifying user:', error);
-      return { success: false, message: 'Error verifying user' };
+      console.error("Error adding user:", error);
+      return { success: false, message: "Error adding user" };
     }
   };
   
-
   const validateInputs = () => {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+  
     let isValid = true;
-
+  
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
+      setEmailErrorMessage("Please enter a valid email address.");
       isValid = false;
     } else {
       setEmailError(false);
-      setEmailErrorMessage('');
+      setEmailErrorMessage("");
     }
-
+  
     if (!password.value || password.value.length < 6) {
       setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 6 characters long.');
+      setPasswordErrorMessage("Password must be at least 6 characters long.");
       isValid = false;
     } else {
       setPasswordError(false);
-      setPasswordErrorMessage('');
+      setPasswordErrorMessage("");
     }
-
+  
     return isValid;
   };
-
+  
   const handleAuth0Login = async () => {
     if (auth0Client) {
       try {
@@ -296,7 +295,7 @@ export default function SignIn(props) {
               variant="contained"
               onClick={validateInputs}
             >
-              Sign in
+              Create Account
             </Button>
           </Box>
           <Divider>or</Divider>
@@ -313,7 +312,7 @@ export default function SignIn(props) {
               }}
               onClick={handleAuth0Login}
             >
-              Sign in with Auth0
+              Create Account with Auth0
             </Button>
 
           </Box>
