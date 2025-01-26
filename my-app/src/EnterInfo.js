@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Box from '@mui/material/Box';
+import {Button, Grid2, Card} from '@mui/material';
 import { Link, useNavigate } from "react-router-dom"
 
 
@@ -118,52 +118,45 @@ function GoalButtons() {
       };
 
     return (
-        <Box component="section" sx={{ p: 2, border: '1px dashed grey' }}>
-      Please choose whether you are planning for a business or personal account
+        <Card sx={{ padding: 4, width: 256, marginBottom: 4, boxShadow: 3 }}>
+            Please choose whether you are planning for a business or personal account
     
-        <ToggleButtonGroup
-            value={alignment}
-            exclusive
-            onChange={handleAlignment}
-            //labelPosition ="right"
-            style={{ display: "flex", justifyContent: "center" }}
-            
+            <ToggleButtonGroup
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                style={{ display: "flex", justifyContent: "center" }} 
+                sx={{p:2}}   
             >
-        <ToggleButton value = "Business">Business</ToggleButton>
-        <ToggleButton value = "Personal">Personal</ToggleButton>
-        </ToggleButtonGroup>
-        </Box>
+                <ToggleButton value = "Business" color="primary">Business</ToggleButton>
+                <ToggleButton value = "Personal" color="primary">Personal</ToggleButton>
+            </ToggleButtonGroup>
+        </Card>
     );
     }
 export {GoalButtons}
 
-function NextButton() {
-    return (
-        <div
-            style={{
-                position: "absolute",
-                top: "20px",
-                right: "20px",
-
-
-            }}
-      >
-        <button variant="Next" size="large">
-            <Link to="/BudgetForm">Submit</Link>
-        </button>
-        </div>
-    )
-}
-export {NextButton}
-
 function EnterPersonalInfo() {
     return (
-        <div>
-            <Title />
-            <PersonalText />
-            <GoalButtons />
-            <NextButton />
-        </div>
+        <Grid2
+            container
+            rowSpacing={2}
+            direction='column'
+            alignItems="center"
+            justifyContent="center"
+            sx={{ m: 2, display: 'flex' }}
+        >
+            <Grid2 item><Title /></Grid2>
+            <Grid2 item><PersonalText /></Grid2>
+            <Grid2 item sx={{p:4}}><GoalButtons /></Grid2>
+            <Grid2 item alignItems={"center"}><Button 
+                variant="contained" 
+                type="submit"
+                >
+                <Link to="/BudgetForm">Next</Link>
+                </Button>
+            </Grid2>
+        </Grid2>
     );
 }
 
